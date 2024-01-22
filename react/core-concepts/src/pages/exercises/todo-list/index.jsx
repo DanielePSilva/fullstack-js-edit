@@ -1,46 +1,40 @@
 import { useState } from "react";
-
 function TodoListPage() {
-  const [inputValue, setInputValue] = useState("");
+  const [textValue, setTextValue] = useState("");
   const [items, setItems] = useState([]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setItems((prevItems) => [...prevItems, inputValue]);
-    setInputValue("");
-    console.log(event);
-  };
-  const handleDelete = (index) => {
-    const updatedItemns = [...items];
-    updatedItemns.splice(index, 1);
-    setItems(updatedItemns);
+  const handleRemove = (index) => {
+    const newArr = [...items];
+    // newArr.splice(index, 1);
+    const arr = newArr.filter((item, key) => index !== key);
+    setItems(arr);
   };
 
   return (
     <div>
-      <div>
-        <h1> Todo List</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={inputValue}
-            onChange={(event) => setInputValue(event.target.value)}
-          />
-          <button type="submit">Adicionar</button>
-        </form>
-      </div>
-      <div>
-        <ul>
-          {items.map((item, index) => (
-            <li key={index} onClick={() => handleDelete(index)}>
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <h1>Todo list</h1>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          setItems([...items, textValue]);
+        }}
+      >
+        <input
+          type="text"
+          value={textValue}
+          onChange={(event) => setTextValue(event.target.value)}
+        />
+        <button type="submit">Adicionar</button>
+      </form>
+      <ul>
+        {items.map((item, index) => (
+          <li key={`${index}-${item}`} onClick={() => handleRemove(index)}>
+            {item}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
-export default TodoListPage;
 
-// fazer uma todo list adicionar elementos  e remover
+export default TodoListPage;

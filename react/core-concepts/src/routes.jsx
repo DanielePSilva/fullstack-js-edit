@@ -61,7 +61,7 @@ export const ROUTES_LIST = [
     element: <ExercisesPage />,
   },
   {
-    title: "Exercises -todo- list",
+    title: "Exercises - todo list",
     path: "/exercises/todo-list",
     element: <TodoListPage />,
   },
