@@ -37,12 +37,12 @@
   text-decoration: none;
   color: white;
 }
-.exercise-class-list {
+.exercises-card-list {
   display: flex;
   gap: 10px;
 }
 
-.exercise-class-container {
+.exercises-card-container {
   border: 1px solid white;
   padding: 10px;
 }
